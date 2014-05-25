@@ -21,6 +21,16 @@ class Comic(models.Model):
     commentary = models.TextField()
     date_posted = models.DateField()
 
+class NewsPost(models.Model):
+    '''
+    Represents a news post.
+    text - text of news post
+    datetime - date and time that the comic was posted
+    TODO add ability to edit dates
+    '''
+    text = models.TextField()
+    datetime = models.DateTimeField(auto_now_add=True)
+
 class Comment(models.Model):
     '''
     Represents a comment on a comic or a news post.
@@ -35,13 +45,3 @@ class Comment(models.Model):
     username = models.CharField(max_length=255, blank=True)
     parent_comic = models.ForeignKey(Comic, blank=True, null=True)
     parent_news = models.ForeignKey(NewsPost, blank=True, null=True)
-
-class NewsPost(models.Model):
-    '''
-    Represents a news post.
-    text - text of news post
-    datetime - date and time that the comic was posted
-    TODO add ability to edit dates
-    '''
-    text = models.TextField()
-    datetime = models.DateTimeField(auto_now_add=True)
