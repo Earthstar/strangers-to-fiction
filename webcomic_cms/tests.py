@@ -24,7 +24,6 @@ class ComicTestCase(TestCase):
     def test_comic_numbering(self):
         '''
         Check if comic numbering starts at 1 and increments.
-        This doesn't seem to be the case?
         No guarentee that the id starts with 1
         '''
         comic1 = Comic.objects.get(title='comic1')

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <title>Strangers to Fiction: {% block title %}{% endblock title %}</title>
+</head>
+<body>
+  <div class="header">
+    <img src="" alt="Strangers To Fiction header">
+    <div class="menu">
+      <ul>
+        <li>Home</li>
+        <li>Archive</li>
+        <li>About</li>
+      </ul>
+    </div>
+  </div>
+  {% block content %}
+
+  {% endblock content %}
+
+  <div class="footer">This website created by Deena Wang and powered by some ungodly mix of Django, and duct tape.</div>
+</body>
+</html>
