@@ -1,0 +1,20 @@
+[{
+  "model": "webcomic_cms.Comic",
+  "pk": 1,
+  "fields": {
+    "title": "comic1",
+    "number": 1,
+    "image": "test1.png",
+    "date_posted": "2014-04-11"
+  }
+  },
+  {
+  "model": "webcomic_cms.Comic",
+  "pk": 2,
+  "fields": {
+    "title": "comic2",
+    "number": 2,
+    "image": "test2.jpg",
+    "date_posted": "2014-04-12"
+  }
+  }]

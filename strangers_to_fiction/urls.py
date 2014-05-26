@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^$', stf.home),
     url(r'^about/', stf.about),
     url(r'^archive/', stf.archive),
-    url(r'^comic/', stf.comic),
+    url(r'^comic/([0-9]+)/$', stf.comic),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

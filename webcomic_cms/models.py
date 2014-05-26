@@ -4,6 +4,7 @@ from django.contrib.contenttypes import generic
 
 class Comic(models.Model):
     '''
+    ./manage.py sqlclear webcomic_cms | ./manage.py dbshell
     Represents a comic entry.
     May want to add ability to queue posts in the future.
     title - title of comic
@@ -35,6 +36,9 @@ class Comic(models.Model):
             self.number = 1 + Comic.objects.all().latest('date_posted').number
         super(Comic, self).save(*args, **kwargs)
 
+    def __unicode__(self):
+        return str(self.number)
+
 class NewsPost(models.Model):
     '''
     Represents a news post.
@@ -44,6 +48,9 @@ class NewsPost(models.Model):
     '''
     text = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.text
 
 class Comment(models.Model):
     '''
@@ -71,3 +78,6 @@ class Comment(models.Model):
         else:
             raise Exception('A Comment should have exactly one parent, but this comment has {0} parent(s)'.format(
                 bool(self.parent_comic) + bool(self.parent_news)))
+
+    def __unicode__(self):
+        return self.text
