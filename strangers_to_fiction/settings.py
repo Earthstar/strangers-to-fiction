@@ -107,5 +107,7 @@ STATICFILES_DIRS = (
 )
 
 # Points to location to store image data
-MEDIA_ROOT = '/home/earthstar/Documents/WebDev/webcomic-stf/strangers-to-fiction/webcomic_cms/comics'
-MEDIA_URL = 'localhost:8000/'
+# MEDIA_ROOT = '/home/earthstar/Documents/WebDev/webcomic-stf/strangers-to-fiction/webcomic_cms/comics'
+# MEDIA_URL = 'localhost:8000/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

@@ -5,6 +5,7 @@
     "title": "comic1",
     "number": 1,
     "image": "comic1.png",
+    "alt_text": "comic1 alt text",
     "date_posted": "2014-04-11"
   }
   },
