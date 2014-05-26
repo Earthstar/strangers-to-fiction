@@ -7,26 +7,40 @@ class Comic(models.Model):
     Represents a comic entry.
     May want to add ability to queue posts in the future.
     title - title of comic
-    number - number of comic
+    number - number of comic.
     image - comic image data
-    alt_text - alt text for comic
-    commentary - artist-submitted text specific to comment
+    alt_text - alt text for comic, optional
+    commentary - artist-submitted text specific to comic, optional
     date_posted - date from which the comic should be visible
     on the website
     '''
     title = models.CharField(max_length=255)
-    number = models.SmallIntegerField()
-    image = models.ImageField(upload_to='comics')
-    alt_text = models.CharField(max_length=255)
-    commentary = models.TextField()
+    number = models.PositiveSmallIntegerField()
+    # Actually stores an URL
+    image = models.ImageField(upload_to='comics', max_length=255)
+    alt_text = models.CharField(max_length=255, blank=True)
+    commentary = models.TextField(blank=True)
     date_posted = models.DateField()
+
+    def save(self, *args, **kwargs):
+        '''
+        Override save to set incrementing Comic.number
+        '''
+        # If there are no comics yet, set number to 1
+        if Comic.objects.count() == 0:
+            self.number = 1
+        # If there is a comic, set number to one more than original
+        else:
+            # Get the number of the last comic posted
+            self.number = 1 + Comic.objects.all().latest('date_posted').number
+        super(Comic, self).save(*args, **kwargs)
 
 class NewsPost(models.Model):
     '''
     Represents a news post.
     text - text of news post
     datetime - date and time that the comic was posted
-    TODO add ability to edit dates
+    TODO add ability to edit posts?
     '''
     text = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
