@@ -8,14 +8,14 @@ class ComicTestCase(TestCase):
         Comic.objects.create(
             title="comic1",
             # I have no idea how storing images works
-            image='test1.png',
+            image='comic1.png',
             alt_text='alt text 1',
             commentary='commentary 1',
             date_posted = datetime.date.today(),
             )
         Comic.objects.create(
             title="comic2",
-            image='test2.png',
+            image='comic2.png',
             alt_text='alt text 2',
             commentary='commentary 2',
             date_posted = datetime.date.today(),
@@ -38,8 +38,8 @@ class ComicTestCase(TestCase):
         comic1 = Comic.objects.get(title='comic1')
         comic2 = Comic.objects.get(title='comic2')
         # This is the full file path
-        self.assertEqual(comic1.image.path, '/home/earthstar/Documents/WebDev/webcomic-stf/strangers-to-fiction/webcomic_cms/comics/test1.png')
-        self.assertEqual(comic1.image.name, 'test1.png')
+        self.assertEqual(comic1.image.path, '/home/earthstar/Documents/WebDev/webcomic-stf/strangers-to-fiction/webcomic_cms/comics/comic1.png')
+        self.assertEqual(comic1.image.name, 'comic1.png')
         # image.url is the same as image.name in this test environment
 
 class CommentTestCase(TestCase):
@@ -47,7 +47,7 @@ class CommentTestCase(TestCase):
         comic1 = Comic.objects.create(
             title="comic1",
             # I have no idea how storing images works
-            image='test1.png',
+            image='comic1.png',
             alt_text='alt text 1',
             commentary='commentary 1',
             date_posted = datetime.date.today(),

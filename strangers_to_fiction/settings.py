@@ -30,6 +30,12 @@ TEMPLATE_DIRS = (
     'webcomic_cms/templates',
     )
 
+# ???
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',)
+
 ALLOWED_HOSTS = []
 
 
@@ -102,4 +108,4 @@ STATICFILES_DIRS = (
 
 # Points to location to store image data
 MEDIA_ROOT = '/home/earthstar/Documents/WebDev/webcomic-stf/strangers-to-fiction/webcomic_cms/comics'
-# MEDIA_URL = 'comics'
+MEDIA_URL = 'localhost:8000/'

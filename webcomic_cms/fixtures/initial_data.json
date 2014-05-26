@@ -4,7 +4,7 @@
   "fields": {
     "title": "comic1",
     "number": 1,
-    "image": "test1.png",
+    "image": "comic1.png",
     "date_posted": "2014-04-11"
   }
   },
@@ -14,7 +14,7 @@
   "fields": {
     "title": "comic2",
     "number": 2,
-    "image": "test2.jpg",
+    "image": "comic2.png",
     "date_posted": "2014-04-12"
   }
   }]
