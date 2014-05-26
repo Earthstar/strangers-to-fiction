@@ -59,3 +59,15 @@ class Comment(models.Model):
     username = models.CharField(max_length=255, blank=True)
     parent_comic = models.ForeignKey(Comic, blank=True, null=True)
     parent_news = models.ForeignKey(NewsPost, blank=True, null=True)
+
+    def get_parent_class(self):
+        '''
+        Returns the class of the parent.
+        '''
+        if self.parent_comic and not self.parent_news:
+            return Comic
+        elif not self.parent_comic and self.parent_news:
+            return NewsPost
+        else:
+            raise Exception('A Comment should have exactly one parent, but this comment has {0} parent(s)'.format(
+                bool(self.parent_comic) + bool(self.parent_news)))

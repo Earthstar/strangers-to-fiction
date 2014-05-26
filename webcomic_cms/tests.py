@@ -16,8 +16,8 @@ class ComicTestCase(TestCase):
         Comic.objects.create(
             title="comic2",
             image='test2.png',
-            alt_text='alt text 1',
-            commentary='commentary 1',
+            alt_text='alt text 2',
+            commentary='commentary 2',
             date_posted = datetime.date.today(),
             )
 
@@ -41,4 +41,38 @@ class ComicTestCase(TestCase):
         # This is the full file path
         self.assertEqual(comic1.image.path, '/home/earthstar/Documents/WebDev/webcomic-stf/strangers-to-fiction/webcomic_cms/comics/test1.png')
         self.assertEqual(comic1.image.name, 'test1.png')
-        # the URL seems to be
+        # image.url is the same as image.name in this test environment
+
+class CommentTestCase(TestCase):
+    def setUp(self):
+        comic1 = Comic.objects.create(
+            title="comic1",
+            # I have no idea how storing images works
+            image='test1.png',
+            alt_text='alt text 1',
+            commentary='commentary 1',
+            date_posted = datetime.date.today(),
+            )
+        news1 = NewsPost.objects.create(
+            text='Blah blah blah')
+        comment1 = Comment.objects.create(
+            text='comment1',
+            username='Harry Potter',
+            parent_comic=comic1,
+            )
+        comment2 = Comment.objects.create(
+            text='comment2',
+            username='Ron Weasley',
+            parent_news=news1)
+        comment3 = Comment.objects.create(
+            text='comment3',
+            username='Granger')
+
+    def test_comic_parent(self):
+        comment1 = Comment.objects.get(text='comment1')
+        self.assertEqual(comment1.get_parent_class(), Comic)
+        comment2 = Comment.objects.get(text='comment2')
+        self.assertEqual(comment2.get_parent_class(), NewsPost)
+        comment3 = Comment.objects.get(text='comment3')
+        self.assertRaises(Exception, comment3.get_parent_class)
+
