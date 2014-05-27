@@ -44,6 +44,12 @@ class ComicTestCase(TestCase):
         self.assertEqual(comic1.image.url, '/media/comic1.png')
         # image.url is the same as image.name in this test environment
 
+    def test_first_last(self):
+        comics = Comic.objects.all()
+        self.assertTrue(comics[0].is_first())
+        # Can't negative index :(
+        self.assertTrue(comics[1].is_last())
+
 class CommentTestCase(TestCase):
     def setUp(self):
         comic1 = Comic.objects.create(

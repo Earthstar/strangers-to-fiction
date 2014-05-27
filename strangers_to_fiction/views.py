@@ -36,5 +36,22 @@ def comic(request, number):
             'alt_text': comic.alt_text,
             'commentary': comic.commentary,
             'date_posted': comic.date_posted,
+            'is_first': comic.is_first(),
+            'is_last': comic.is_last(),
         }}
         return render(request, 'comic.html', context)
+
+def first_comic(request):
+    '''
+    Returns a page with the first visible comic.
+    Assumes the first comic is number 1.
+    '''
+    return comic(request, 1)
+
+def last_comic(request):
+    '''
+    Returns a page with the last visible comic.
+    '''
+    # Get the last number
+    last_number = Comic.objects.order_by('number').last().number
+    return comic(request, last_number)

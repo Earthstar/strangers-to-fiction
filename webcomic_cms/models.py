@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
@@ -21,7 +23,8 @@ class Comic(models.Model):
     image = models.ImageField(upload_to='comics', max_length=255)
     alt_text = models.CharField(max_length=255, blank=True)
     commentary = models.TextField(blank=True)
-    date_posted = models.DateField()
+    date_uploaded = models.DateField(auto_now_add=True)
+    date_posted = models.DateField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         '''
@@ -32,9 +35,30 @@ class Comic(models.Model):
             self.number = 1
         # If there is a comic, set number to one more than original
         else:
-            # Get the number of the last comic posted
-            self.number = 1 + Comic.objects.all().latest('date_posted').number
+            # Increment previously-highest number
+            self.number = 1 + Comic.objects.order_by('number').last().number
         super(Comic, self).save(*args, **kwargs)
+
+    def is_first(self):
+        '''
+        Returns True if first comic, False otherwise
+        Not sure if there is a better way of doing this
+        '''
+        return self == Comic.objects.order_by('number').first()
+
+    def is_last(self):
+        '''
+        Returns True if last comic, false otherwise
+        '''
+        return self == Comic.objects.order_by('number').last()
+
+    def is_visible(self):
+        '''
+        Returns True if this comic should be visible,
+        i.e. the date_posted is less than today's date.
+        This is a stub for now
+        '''
+        return True
 
     def __unicode__(self):
         return str(self.number)

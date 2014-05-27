@@ -6,7 +6,8 @@
     "number": 1,
     "image": "comic1.png",
     "alt_text": "comic1 alt text",
-    "date_posted": "2014-04-11"
+    "date_posted": "2014-04-11",
+    "date_uploaded": "2014-04-11"
   }
   },
   {
@@ -16,6 +17,7 @@
     "title": "comic2",
     "number": 2,
     "image": "comic2.png",
-    "date_posted": "2014-04-12"
+    "date_posted": "2014-04-12",
+    "date_uploaded": "2014-04-12"
   }
   }]
