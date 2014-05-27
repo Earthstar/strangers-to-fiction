@@ -5,23 +5,9 @@
 {% block comic_container %}
 {{comic.title}}
 {{comic.number}}
-<div class="comic-navigation">
-  <a href="/comic/first/">First</a>
-  {# If this is the first comic, the back button goes to the first page #}
-  {% if comic.is_first %}
-    <a href="/comic/first/">Previous</a>
-  {% else %}
-    <a href="/comic/{{comic.number|add:"-1"}}">Previous</a>
-  {% endif %}
-  {# If last comic, next button goes to last page #}
-  {% if comic.is_last %}
-    <a href="/comic/last/">Next</a>
-  {% else %}
-    <a href="/comic/{{comic.number|add:"1"}}">Next</a>
-  {% endif %}
-  <a href="/comic/last/">Latest</a>
-</div>
+{% include "comic_nav.html" %}
 <img src="{{comic.image.url}}" alt="{{comic.alt_text}}">
+{% include "comic_nav.html" %}
 {% endblock comic_container %}
 
 {% block comments %}
