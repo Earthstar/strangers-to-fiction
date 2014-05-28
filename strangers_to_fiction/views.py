@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Template, Context
-from django.views.defaults import server_error
+from django.views.defaults import server_error, page_not_found
 
 from webcomic_cms.models import Comic, NewsPost, Comment
 
@@ -22,13 +22,13 @@ def archive(request):
 def comic(request, number):
     '''
     number - number of the comic to view.
-    Returns 500 error if request a comic that isn't visible yet.
+    Returns 404 page if request a comic that isn't visible yet.
     '''
     if request.method == 'GET':
         try:
             comic = Comic.objects.get(number=number)
         except:
-            return server_error(request)
+            return page_not_found(request)
         # This works, but it seems inelegant
         context = {'comic':
             {
