@@ -5,5 +5,11 @@
 {% endblock title %}
 
 {% block content %}
-  {# List of comics with date posted go here #}
+  <ul class="comiclist">
+  {% for comic in comics %}
+    <li>
+      <a href="/comic/{{comic.number}}">{{comic.number}}: {{comic.title}}</a>
+    </li>
+  {% endfor %}
+  </ul>
 {% endblock content %}

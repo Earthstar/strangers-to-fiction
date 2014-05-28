@@ -14,8 +14,10 @@ def about(request):
     return render(request, 'about.html', context)
 
 def archive(request):
-    context = {}
-    return render(request, 'archive.html', context)
+    if request.method == 'GET':
+        comics = Comic.objects.order_by('number').reverse().values()
+        context = {'comics': comics}
+        return render(request, 'archive.html', context)
 
 def comic(request, number):
     '''
