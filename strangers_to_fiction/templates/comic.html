@@ -1,9 +1,18 @@
-{% extends "comic_display.html" %}
-
+{% extends "base.html" %}
+{# Displays a comic #}
 {% block title %}
   Comic #{{comic.number}}
 {% endblock title %}
 
-{% block comments %}
-{# Comments which are attached to this comic #}
-{% endblock comments %}
+{% block content %}
+
+{% include "comic_container.html" %}
+
+<div>
+  {{comic.title}} <br>
+  {{comic.commentary}}
+</div>
+
+{% include "comments.html" %}
+
+{% endblock content %}

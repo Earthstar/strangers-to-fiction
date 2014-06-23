@@ -29,6 +29,9 @@ def comic(request, number):
             comic = Comic.objects.get(number=number)
         except:
             return page_not_found(request)
+        # Get commentary
+        # Not sure what order to get?
+        comments = comic.comment_set.all().order_by('datetime').values()
         # This works, but it seems inelegant
         context = {'comic':
             {
@@ -40,7 +43,9 @@ def comic(request, number):
             'date_posted': comic.date_posted,
             'is_first': comic.is_first(),
             'is_last': comic.is_last(),
-        }}
+            },
+            'comments': comments,
+        }
         return render(request, 'comic.html', context)
 
 def first_comic(request):

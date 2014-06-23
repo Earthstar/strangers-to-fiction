@@ -70,6 +70,7 @@ class NewsPost(models.Model):
     datetime - date and time that the comic was posted
     TODO add ability to edit posts?
     '''
+    title = models.CharField(max_length=255)
     text = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
 

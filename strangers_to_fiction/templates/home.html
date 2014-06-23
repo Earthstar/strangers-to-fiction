@@ -1,9 +1,16 @@
-{% extends "comic_display.html" %}
+{% extends "base.html" %}
 
 {% block title %}
   Home
 {% endblock title %}
 
-{% block comments %}
-  {# News comments go here #}
-{% endblock comments %}
+{% block content %}
+  {% include "comic_container.html" %}
+  {% block undercomic %}
+    {% for newspost in newsposts %}
+      {{newspost.title}} <br>
+      {{newspost.datetime}} <br>
+      {{newspost.text}}
+    {% endfor %}
+  {% endblock undercomic %}
+{% endblock content %}

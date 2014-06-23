@@ -1,0 +1,7 @@
+<div id="comment-div">
+  {% for comment in comments %}
+    {{comment.username}} <br>
+    {{comment.datetime}} <br>
+    {{comment.text}}
+  {% endfor %}
+</div>
